@@ -10,6 +10,7 @@ import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
 
+import BeeStudios.ss13.Settings.Settings_class;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;
 
@@ -137,7 +138,7 @@ public class TextureLoader {
     }
 
     //public static void drawtex_QUAD_args2(int TextureID,float texsizex,float texsizey,float tilenox,float tilenoy,float tilewidth){//(int[]texpair,int[]texcoords,int TextureID,float x, float y,float x_iscale,float y_iscale){//,float imagexpercent,float imeageypercent
-    public static void drawtex_QUAD_args2(int TextureID, float[] texsize, float tileno[], float tilewidth, float[] texscalexy, boolean truescaleraw,Settings_class Xsettings,float[] renderxyz,boolean calcxyratios) {
+    public static void drawtex_QUAD_args2(int TextureID, float[] texsize, float tileno[], float tilewidth, float[] texscalexy, boolean truescaleraw, Settings_class Xsettings, float[] renderxyz, boolean calcxyratios) {
         // temp maths
         //float x_iscale;
         //float y_iscale;

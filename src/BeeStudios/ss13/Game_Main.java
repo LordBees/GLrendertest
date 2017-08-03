@@ -2,12 +2,12 @@ package BeeStudios.ss13;
 
 //import org.lwjgl.Version;
 
+import BeeStudios.ss13.Settings.Settings_class;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
-import java.awt.image.BufferedImage;
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -93,7 +93,13 @@ public class Game_Main {
 
         // Create the window
         //this.window = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
-        this.window = glfwCreateWindow(CFG.Disp_xres, CFG.Disp_yres, CFG.WinTitle, NULL, NULL);
+        if (CFG.Fullscreen){
+            this.window = glfwCreateWindow(CFG.Disp_xres, CFG.Disp_yres, CFG.WinTitle,glfwGetPrimaryMonitor(),NULL);
+        }
+        else {
+            this.window = glfwCreateWindow(CFG.Disp_xres, CFG.Disp_yres, CFG.WinTitle, NULL, NULL);
+        }
+
         if ( this.window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
@@ -190,7 +196,7 @@ public class Game_Main {
 
         //int tx2 = TexLdr.BindResourceTex("Test_sample - Copy.png");
         //int tx2 = TexLdr.BindResourceTex("test_sample.png");
-        int tx = TexLdr.BindResourceTex("tiletes.png");
+        int tx = TexLdr.BindResourceTex("/Test/tiletes.png");
         //BufferedImage tdat = TexLdr.loadImage("Test_sample.png");
         //System.out.println(tdat.createGraphics());
         //int tx = TexLdr.loadTexture(tdat);
