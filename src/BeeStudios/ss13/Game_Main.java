@@ -242,6 +242,7 @@ public class Game_Main {
             if (tx2_tpos[1]>22){
                 tx2_tpos[1] = 0;
             }
+            //
 
             //was glrender stuff here moved to glfff txt
             glfwSwapBuffers(this.window); // swap the color buffers
