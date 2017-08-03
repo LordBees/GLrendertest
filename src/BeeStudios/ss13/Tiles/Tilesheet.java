@@ -1,4 +1,4 @@
-package BeeStudios.ss13;
+package BeeStudios.ss13.Tiles;
 
 import java.awt.image.BufferedImage;
 
