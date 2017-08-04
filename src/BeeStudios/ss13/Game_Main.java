@@ -231,8 +231,8 @@ public class Game_Main {
                 tx2_tpos[1] = tx2_tpos[1] - 1;
             }
         });
-        BGMX.load("/snd/NKM-G-70-31-1138428242-0-30429-144-144-4-3290-53-0-27-317-34-544-116-131-0-0-0-0-713.wav",true);
-        BGMX.play();
+        //BGMX.load("/snd/BGM.wav",true);
+        //BGMX.play();
         while (!glfwWindowShouldClose(this.window) ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
