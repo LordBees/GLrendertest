@@ -205,6 +205,7 @@ public class Game_Main {
         //int tx = TexLdr.loadTexture(tdat);
 
         System.out.println(TexD.setplanedata(0,0,tx));
+        //Sys
         //if(true){
         //    throw new RuntimeException("");
         //}
@@ -231,8 +232,8 @@ public class Game_Main {
                 tx2_tpos[1] = tx2_tpos[1] - 1;
             }
         });
-        //BGMX.load("/snd/BGM.wav",true);
-        //BGMX.play();
+        BGMX.load("/snd/BGM.wav",true);
+        BGMX.play();
         while (!glfwWindowShouldClose(this.window) ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 

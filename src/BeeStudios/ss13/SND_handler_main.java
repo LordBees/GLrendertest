@@ -1,10 +1,11 @@
 //package Assignment.game;
 package BeeStudios.ss13;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import sun.security.pkcs11.wrapper.Constants;
+
+import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -57,10 +58,21 @@ public class SND_handler_main {
                 //new Media(MyApplicationClass.class.getResource("/resources/test.wav").toURI().toString())
                 //file ClassLoader.getResourceAsStream ("some/pkg/resource.properties");
                 if (true) {
-                    InputStream ISFiledata = getClass().getResourceAsStream(Xfile);
+                    InputStream in = getClass().getResourceAsStream(Xfile);
+                    //BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+
+                    //InputStream ISFiledata = getClass().getResourceAsStream(reader);
+                    //URL url = Constants.class.getResource("/sounds/file.wav");
+                    //URL url = Constants.class.getResource(Xfile);
+
+                    //ClassLoader classLoader = getClass().getClassLoader();
+                    //File file = new File(classLoader.getResource(Xfile).getFile());
+
+
                     Clip clipsnd = AudioSystem.getClip();
                     //AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(Xfile));
-                    AudioInputStream ais = AudioSystem.getAudioInputStream(ISFiledata);
+                    AudioInputStream ais = AudioSystem.getAudioInputStream(in);
                     clipsnd.open(ais);
                     this.clipsnd = clipsnd;
                 } else {
