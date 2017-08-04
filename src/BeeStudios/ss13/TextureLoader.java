@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
+import javax.swing.plaf.synth.SynthEditorPaneUI;
 
 import BeeStudios.ss13.Settings.Settings_class;
 import org.lwjgl.BufferUtils;
@@ -71,6 +72,40 @@ public class TextureLoader {
             //return ImageIO.read(MainClass.class.getResource(loc));
             //ImageIO.read(BeeStudios.ss13.getResource(loc));
             String current = new java.io.File(".").getCanonicalPath();
+            System.out.println(current + "/Res/" + loc);
+            //System.out.println(ImageIO.read(new File(current + "\\Res\\" + loc)));
+            return ImageIO.read(new File(current + "/Res/" + loc));
+        } catch (IOException e) {
+            //Error Handling Here
+            System.out.println("error! image not loaded!");
+            System.out.println("/Res/" + loc);
+        }
+        //System.out.println("xnull");
+        return null;
+    }
+    public BufferedImage loadImage2(String loc) {
+        System.out.println("L2");
+        try {
+            //String current = new java.io.File(".").getCanonicalPath();
+            System.out.println(this.getClass().getResource(loc));
+            System.out.println(loc);
+            //System.out.println(getClass().getResourceAsStream("BeeStudios/ss13/Res/"+loc));
+            BufferedImage image =ImageIO.read(getClass().getResourceAsStream(loc));
+            return image;
+        } catch (IOException e) {
+            //Error Handling Here
+            System.out.println("error! image not loaded!");
+            System.out.println("ERROR: "+loc);
+        }
+        //System.out.println("xnull");
+        return null;
+    }
+    /*
+     public static BufferedImage loadImage(String loc) {
+        try {
+            //return ImageIO.read(MainClass.class.getResource(loc));
+            //ImageIO.read(BeeStudios.ss13.getResource(loc));
+            String current = new java.io.File(".").getCanonicalPath();
             System.out.println(current + "\\Res\\" + loc);
             //System.out.println(ImageIO.read(new File(current + "\\Res\\" + loc)));
             return ImageIO.read(new File(current + "\\Res\\" + loc));
@@ -82,9 +117,12 @@ public class TextureLoader {
         //System.out.println("xnull");
         return null;
     }
-
-    public static int BindResourceTex(String XtexPath) {//### gets resource then binds it and returns id
-        return (loadTexture(loadImage(XtexPath)));//quick load
+     */
+    //public static int BindResourceTex(String XtexPath) {//### gets resource then binds it and returns id
+    //    return (loadTexture(loadImage(XtexPath)));//quick load
+    //}
+    public int BindResourceTex(String XtexPath) {//### gets resource then binds it and returns id
+        return (loadTexture(loadImage2(XtexPath)));//quick load
     }
 
     //shouldent be here but is for time being as easy to call

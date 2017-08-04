@@ -4,6 +4,7 @@ package BeeStudios.ss13;
 
 import BeeStudios.ss13.Settings.Settings_class;
 import org.lwjgl.*;
+import org.lwjgl.bgfx.BGFX;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
@@ -28,6 +29,7 @@ public class Game_Main {
         Texmanager      TexMan = new Texmanager();
         TextureLoader   TexLdr = new TextureLoader();//moved to post init EDIT:was
         DisplayRenderTile_manager TexD = new DisplayRenderTile_manager(10,10,false);
+        SND_handler_main BGMX = new SND_handler_main();
 
     //GLstuff
         //## The window handle
@@ -181,6 +183,7 @@ public class Game_Main {
 
     }
     public void Game_Main_Loop(){
+        System.out.println("mainloop");
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
 
@@ -192,7 +195,7 @@ public class Game_Main {
         //int tx = TexLdr.BindResourceTex("Test_sample.png");
         //int tx2 = TexLdr.BindResourceTex("construction_floors.dmi");
         //int tx2 = TexLdr.BindResourceTex("construction_floors.dmi");
-        int tx2 = TexLdr.BindResourceTex("/turf/floors.dmi");
+        int tx2 = TexLdr.BindResourceTex("/turf/floors.dmi");//"turf\\floors.dmi"
 
         //int tx2 = TexLdr.BindResourceTex("Test_sample - Copy.png");
         //int tx2 = TexLdr.BindResourceTex("test_sample.png");
@@ -215,11 +218,21 @@ public class Game_Main {
         glfwSetKeyCallback(this.window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
-            if ( key == GLFW_KEY_Z && action == GLFW_RELEASE ) {
+            if ( key == GLFW_KEY_X && action == GLFW_RELEASE ) {
                 tx2_tpos[0] = tx2_tpos[0] + 1;
             }
+            if ( key == GLFW_KEY_S && action == GLFW_RELEASE ) {
+                tx2_tpos[1] = tx2_tpos[1] + 1;
+            }
+            if ( key == GLFW_KEY_Z && action == GLFW_RELEASE ) {
+                tx2_tpos[0] = tx2_tpos[0] - 1;
+            }
+            if ( key == GLFW_KEY_A && action == GLFW_RELEASE ) {
+                tx2_tpos[1] = tx2_tpos[1] - 1;
+            }
         });
-
+        BGMX.load("/snd/NKM-G-70-31-1138428242-0-30429-144-144-4-3290-53-0-27-317-34-544-116-131-0-0-0-0-713.wav",true);
+        BGMX.play();
         while (!glfwWindowShouldClose(this.window) ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
