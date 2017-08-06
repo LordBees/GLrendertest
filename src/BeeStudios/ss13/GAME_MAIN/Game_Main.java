@@ -1,8 +1,15 @@
-package BeeStudios.ss13;
+package BeeStudios.ss13.GAME_MAIN;
 
 //import org.lwjgl.Version;
 
+import BeeStudios.ss13.DisplayRenderTile_manager;
+import BeeStudios.ss13.SND_handler_main;
 import BeeStudios.ss13.Settings.Settings_class;
+import BeeStudios.ss13.Texmanager;
+import BeeStudios.ss13.TextureLoader;
+import BeeStudios.ss13.Tiles.Sheetdata;
+import BeeStudios.ss13.UI.Button;
+import BeeStudios.ss13.UI.UI_ButtonClickable;
 import org.lwjgl.*;
 import org.lwjgl.bgfx.BGFX;
 import org.lwjgl.glfw.*;
@@ -26,8 +33,8 @@ public class Game_Main {
     //config
         Settings_class CFG = new Settings_class();
     //managers
-        Texmanager      TexMan = new Texmanager();
-        TextureLoader   TexLdr = new TextureLoader();//moved to post init EDIT:was
+        Texmanager TexMan = new Texmanager();
+        TextureLoader TexLdr = new TextureLoader();//moved to post init EDIT:was
         DisplayRenderTile_manager TexD = new DisplayRenderTile_manager(10,10,false);
         SND_handler_main BGMX = new SND_handler_main();
 
@@ -47,6 +54,9 @@ public class Game_Main {
         System.out.print("\n|GL Done \n");
         if (mode == 0){
             Game_Main_Loop();
+        }
+        else if(mode == 2){
+            Test_2();
         }
         else{
             System.out.println("TESTINGMODE!");
@@ -182,8 +192,8 @@ public class Game_Main {
         }
 
     }
-    public void Game_Main_Loop(){
-        System.out.println("mainloop");
+    public void Test_2(){
+        System.out.println("mainloopt2");
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
 
@@ -232,7 +242,8 @@ public class Game_Main {
                 tx2_tpos[1] = tx2_tpos[1] - 1;
             }
         });
-        BGMX.load("/snd/BGM.wav",true);
+        BGMX.load("/snd/untitled3a.wav",true);
+        //BGMX.load("/snd/testdownconvert2.ogg",true);
         BGMX.play();
         while (!glfwWindowShouldClose(this.window) ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
@@ -271,6 +282,123 @@ public class Game_Main {
             // invoked during this call.
             glfwPollEvents();
         }
+    }
+    public void Game_Main_Loop(){
+        System.out.println("mainloop");
+        GL.createCapabilities();
+        glEnable(GL_TEXTURE_2D);
+        if(CFG.ORTHOMAIN){// ortho space [(0,0 = top left]
+            glOrtho( 0.f, CFG.Disp_xres, CFG.Disp_yres, 0.f, 0.f, 1.f );
+        }
+
+        // Set the clear color
+        //glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(CFG.Disp_clearcolour[0], CFG.Disp_clearcolour[1], CFG.Disp_clearcolour[2], CFG.Disp_clearcolour[3]);
+
+        // load assets
+        DoubleBuffer b1 = BufferUtils.createDoubleBuffer(1);
+        DoubleBuffer b2 = BufferUtils.createDoubleBuffer(1);
+        //Button butontest = new Button(-1,0,10,1,"test£",this.window);
+        int[] taz = {0,255,0};
+        float[][] tax = new float[2][2];
+        tax[0][0] = 0;
+        tax[0][1] = 0;
+        tax[1][0] = 0.5f;
+        tax[1][1] = 0.5f;
+        UI_ButtonClickable butontest = new UI_ButtonClickable(taz,new String[3],tax,true,true);
+
+
+        int[] tx2_dim = {1184,1184};//{64,64};//{1183,1183};//{704,704};
+        float[] tx2_tpos = {1,1};
+        float[] tx2_tscale = {8,8};
+        float[] tx2_xyz = {0.025f,0.025f,0};
+        int tx2 = TexLdr.BindResourceTex("/turf/floors.dmi");//"turf\\floors.dmi"
+        //int tx2 = TexLdr.BindResourceTex("/Test/tiletes.png");//"turf\\floors.dmi"
+        Sheetdata st2 = new Sheetdata(tx2,"",tx2_dim[0],tx2_dim[1],32,32);
+
+        //game loop
+        while (!glfwWindowShouldClose(this.window) ) {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            ///
+            glfwGetCursorPos(window, b1, b2);
+            System.out.println("x : " + b1.get(0) + ", y = " + b2.get(0));
+           // Button butontest = new Button(-1,0,10,1,"test£",this.window);
+            //butontest.setColor(0,255,255);
+            //butontest.draw();
+
+            //butontest.setVisible(true);
+            //
+            //for     (int x=1;x<=(CFG.Disp_xres/32);x++){
+            //    for (int y=1;y<=(CFG.Disp_yres/32);y++){
+            //        TexLdr.Drawdatafromtilesheet_quick(st2,x,y,x*st2.tilewidth,y*st2.textureheight);
+
+            //   }
+            //}
+            //working out disp res
+
+            for     (int x=0;x<20;x++){
+                for (int y=0;y<=20;y++){
+                    TexLdr.Drawdatafromtilesheet_quick(st2,x+1,y+1,x*32,y*32);
+
+                }
+            }
+            //TexLdr.Drawdatafromtilesheet_quick(st2,1,1,0,0);
+            //TexLdr.dr(st2,0,64,tx2);
+
+            System.out.println(st2.texturewidth);
+            /*
+            float[][] xtoi = butontest.makesquarecoords(tax);
+            System.out.print("\n");
+            System.out.println("x : " + xtoi[0][0] + ", y = " + xtoi[1][0]);
+            System.out.println("x : " + xtoi[0][1] + ", y = " + xtoi[1][1]);
+            System.out.println("x : " + xtoi[0][2] + ", y = " + xtoi[1][2]);
+            System.out.println("x : " + xtoi[0][3] + ", y = " + xtoi[1][3]);
+
+            System.out.print("\n");
+            */
+
+            /*
+            System.out.print("\n:");
+            System.out.print(xtoi[0][0]);
+            System.out.print("|");
+            System.out.print(xtoi[1]);
+            System.out.print("|");
+            System.out.print(xtoi[2]);
+            System.out.print("|");
+            System.out.print(xtoi[3]);
+            System.out.print("|");
+            */
+            //butontest.XRender();
+
+
+            LOOP_processinput();
+
+            LOOP_updatestate();
+
+            LOOP_render();
+
+
+            //was glrender stuff here moved to glfff txt
+            glfwSwapBuffers(this.window); // swap the color buffers
+
+            // Poll for window events. The key callback above will only be
+            // invoked during this call.
+            glfwPollEvents();
+        }
+
+
+    }
+    private void LOOP_processinput(){
+        //process input from subsystems and states
+
+    }
+    private void LOOP_updatestate(){
+        //update render state
+
+    }
+    private void LOOP_render(){
+        //render to screen
+
     }
 
 }
