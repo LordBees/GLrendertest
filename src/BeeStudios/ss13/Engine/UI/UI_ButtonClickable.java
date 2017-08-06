@@ -1,9 +1,8 @@
-package BeeStudios.ss13.UI;
+package BeeStudios.ss13.Engine.UI;
 
 import org.lwjgl.opengl.GL11;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import static org.lwjgl.opengl.GL11.*;
 

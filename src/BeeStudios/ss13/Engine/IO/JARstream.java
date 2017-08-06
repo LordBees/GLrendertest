@@ -1,4 +1,4 @@
-package BeeStudios.ss13;
+package BeeStudios.ss13.Engine.IO;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

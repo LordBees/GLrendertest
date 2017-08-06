@@ -1,4 +1,4 @@
-package BeeStudios.ss13.UI;
+package BeeStudios.ss13.Engine.UI;
 
 /**
  * Created by Spartan 2 on 2017-08-04.
@@ -9,8 +9,7 @@ import java.nio.DoubleBuffer;
 //import org.lwjgl.input.Mouse;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.glfw.*;
-import static org.lwjgl.glfw.Callbacks.*;
+
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Button {

@@ -1,4 +1,4 @@
-package BeeStudios.ss13;
+package BeeStudios.ss13.Engine.Texture_io;
 
 /**
  * Created by Spartan 2 on 2017-07-31.
@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
-import javax.swing.plaf.synth.SynthEditorPaneUI;
 
 import BeeStudios.ss13.Settings.Settings_class;
-import BeeStudios.ss13.Tiles.Sheetdata;
-import BeeStudios.ss13.Tiles.Tilesheet;
+import BeeStudios.ss13.Engine.Tiles.Sheetdata;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;
 

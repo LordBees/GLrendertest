@@ -1,6 +1,6 @@
 package BeeStudios.ss13;
 
-import BeeStudios.ss13.Tiles.TileManager;
+import BeeStudios.ss13.testing.TileManager;
 
 /**
  * Created by Spartan 2 on 2017-07-25.

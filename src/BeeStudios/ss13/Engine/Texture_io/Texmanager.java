@@ -1,4 +1,4 @@
-package BeeStudios.ss13;
+package BeeStudios.ss13.Engine.Texture_io;
 
 import org.lwjgl.opengl.GL11;
 

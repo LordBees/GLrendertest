@@ -5,13 +5,11 @@ package BeeStudios.ss13.GAME_MAIN;
 import BeeStudios.ss13.DisplayRenderTile_manager;
 import BeeStudios.ss13.SND_handler_main;
 import BeeStudios.ss13.Settings.Settings_class;
-import BeeStudios.ss13.Texmanager;
-import BeeStudios.ss13.TextureLoader;
-import BeeStudios.ss13.Tiles.Sheetdata;
-import BeeStudios.ss13.UI.Button;
-import BeeStudios.ss13.UI.UI_ButtonClickable;
+import BeeStudios.ss13.Engine.Texture_io.Texmanager;
+import BeeStudios.ss13.Engine.Texture_io.TextureLoader;
+import BeeStudios.ss13.Engine.Tiles.Sheetdata;
+import BeeStudios.ss13.Engine.UI.UI_ButtonClickable;
 import org.lwjgl.*;
-import org.lwjgl.bgfx.BGFX;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
@@ -56,12 +54,15 @@ public class Game_Main {
         if (mode == 0){
             Game_Main_Loop();
         }
+        else if (mode == 1){
+            System.out.println("TESTINGMODE!");
+            test();
+        }
         else if(mode == 2){
             Test_2();
         }
         else{
-            System.out.println("TESTINGMODE!");
-            test();
+            System.out.println("no mode specified, ending session");
         }
         cleanup();
         System.out.println("END_game!");
