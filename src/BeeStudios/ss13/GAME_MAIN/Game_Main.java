@@ -29,6 +29,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class Game_Main {
     //
+    G_VARS sdfg = new G_VARS();
 
     //config
         Settings_class CFG = new Settings_class();
@@ -119,8 +120,15 @@ public class Game_Main {
         glfwSetKeyCallback(this.window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
-            if ( key == GLFW_KEY_Z && action == GLFW_RELEASE )
-                System.out.println('a');
+            if ( key == GLFW_KEY_Z && action == GLFW_RELEASE ){
+                //System.out.println('a');
+                if (sdfg.Player_Z == 0){
+                    sdfg.Player_Z = 1;
+                }
+                else{
+                    sdfg.Player_Z = 0;
+                }
+            }
 
         });
 
@@ -309,12 +317,16 @@ public class Game_Main {
 
 
         int[] tx2_dim = {1184,1184};//{64,64};//{1183,1183};//{704,704};
+        int[] tx3_dim = {704,704};
         float[] tx2_tpos = {1,1};
         float[] tx2_tscale = {8,8};
         float[] tx2_xyz = {0.025f,0.025f,0};
         int tx2 = TexLdr.BindResourceTex("/turf/floors.dmi");//"turf\\floors.dmi"
+        int tx3 = TexLdr.BindResourceTex("/turf/construction_floors.dmi");//"turf\\floors.dmi"
         //int tx2 = TexLdr.BindResourceTex("/Test/tiletes.png");//"turf\\floors.dmi"
-        Sheetdata st2 = new Sheetdata(tx2,"",tx2_dim[0],tx2_dim[1],32,32);
+        Sheetdata st2;
+        Sheetdata sta = new Sheetdata(tx2,"",tx2_dim[0],tx2_dim[1],32,32);
+        Sheetdata stb = new Sheetdata(tx3,"",tx3_dim[0],tx3_dim[1],32,32);
 
         //game loop
         while (!glfwWindowShouldClose(this.window) ) {
@@ -322,6 +334,13 @@ public class Game_Main {
             ///
             glfwGetCursorPos(window, b1, b2);
             System.out.println("x : " + b1.get(0) + ", y = " + b2.get(0));
+            if (sdfg.Player_Z ==0){
+                st2 = sta;
+
+            }
+            else{
+                st2 = stb;
+            }
            // Button butontest = new Button(-1,0,10,1,"test£",this.window);
             //butontest.setColor(0,255,255);
             //butontest.draw();
@@ -336,10 +355,9 @@ public class Game_Main {
             //}
             //working out disp res
 
-            for     (int x=0;x<20;x++){
-                for (int y=0;y<=20;y++){
-                    TexLdr.Drawdatafromtilesheet_quick(st2,x+1,y+1,x*32,y*32);
-
+            for     (int x=0;x<st2.numtiles_x;x++){
+                for (int y=0;y<st2.numtiles_y;y++){
+                    TexLdr.Drawdatafromtilesheet_quick(st2,x+1,y+1,(x*32)+64,(y*32)+64);
                 }
             }
             //TexLdr.Drawdatafromtilesheet_quick(st2,1,1,0,0);
