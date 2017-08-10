@@ -3,6 +3,7 @@ package BeeStudios.ss13.Settings;
 /**
  * Created by Spartan 2 on 2017-07-31.
  */
+///engine configs
 public class Settings_class {
     public boolean Fullscreen = false;
 
@@ -25,7 +26,7 @@ public class Settings_class {
     public boolean ORTHOMAIN = true;
 
     ////
-    public Settings_class(){
+    public Settings_class(){//this is for initialising engine config variables
         //setting up ratio
         this.Disp_tilesondisplayratiox = this.Disp_xres/this.Expect_Tile_xsizeof;
         this.Disp_tilesondisplayratioy = this.Disp_yres/this.Expect_Tile_ysizeof;

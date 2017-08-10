@@ -420,4 +420,24 @@ public class Game_Main {
 
     }
 
+
+    private void LOOP_updatestates(){
+
+    }
+    private void LOOP_RenderSub(){
+        //the render subsystem
+        this.LOOP_RenderTiles();
+        this.LOOP_RenderEnts();
+        this.LOOP_RenderUIElements();
+
+    }
+    private void LOOP_RenderTiles(){
+
+    }
+    private void LOOP_RenderEnts(){
+
+    }
+    private void LOOP_RenderUIElements(){
+
+    }
 }

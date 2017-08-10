@@ -27,7 +27,8 @@ public class JARstream {
             return image;
         } catch (IOException e) {
             //Error Handling Here
-            System.out.println("error! image not loaded!");
+            //System.out.println("error! image not loaded!");
+            System.out.println("error! image not found in JAR!!");
             System.out.println("ERROR: " + fpathlocal);
         }
         //System.out.println("xnull");
@@ -39,5 +40,13 @@ public class JARstream {
         InputStream in = getClass().getResourceAsStream(fpathlocal);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         return reader;
+    }
+    public String[] getjardata_file_Stringarray(String fpathlocal){
+        String[] returner;
+        returner = new String[1];
+        //
+
+        //
+        return returner;
     }
 }
