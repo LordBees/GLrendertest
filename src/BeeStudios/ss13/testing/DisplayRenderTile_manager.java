@@ -1,4 +1,4 @@
-package BeeStudios.ss13;
+package BeeStudios.ss13.testing;
 
 /**
  * Created by Spartan 2 on 2017-08-02.

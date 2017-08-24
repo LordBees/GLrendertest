@@ -2,7 +2,7 @@ package BeeStudios.ss13.GAME_MAIN;
 
 //import org.lwjgl.Version;
 
-import BeeStudios.ss13.DisplayRenderTile_manager;
+import BeeStudios.ss13.testing.DisplayRenderTile_manager;
 import BeeStudios.ss13.SND_handler_main;
 import BeeStudios.ss13.Settings.Settings_class;
 import BeeStudios.ss13.Engine.Texture_io.Texmanager;
@@ -60,6 +60,9 @@ public class Game_Main {
         }
         else if(mode == 2){
             Test_2();
+        }
+        else if(mode == 3){
+            Test_3();
         }
         else{
             System.out.println("no mode specified, ending session");
@@ -172,6 +175,45 @@ public class Game_Main {
         //TexLdr.loadImage()
 
     }
+    public void Game_Main_Loop(){
+        System.out.println("mainloop");
+        GL.createCapabilities();
+        glEnable(GL_TEXTURE_2D);
+        if(CFG.ORTHOMAIN){// ortho space [(0,0 = top left]
+            glOrtho( 0.f, CFG.Disp_xres, CFG.Disp_yres, 0.f, 0.f, 1.f );
+        }
+
+        // Set the clear color
+        //glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(CFG.Disp_clearcolour[0], CFG.Disp_clearcolour[1], CFG.Disp_clearcolour[2], CFG.Disp_clearcolour[3]);
+
+        // load assets
+
+        //game loop
+        while (!glfwWindowShouldClose(this.window) ) {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            ///
+
+
+            LOOP_processinput();
+
+            LOOP_updatestate();
+
+            LOOP_render();
+
+
+            //was glrender stuff here moved to glfff txt
+            glfwSwapBuffers(this.window); // swap the color buffers
+
+            // Poll for window events. The key callback above will only be
+            // invoked during this call.
+            glfwPollEvents();
+        }
+
+
+
+    }
+
     public void test(){
         //TexMan.addtexturetobuffer(TexLdr.BindResourceTex("ASCII_titlepic.PNG"));
 
@@ -292,7 +334,7 @@ public class Game_Main {
             glfwPollEvents();
         }
     }
-    public void Game_Main_Loop(){
+    public void Test_3(){
         System.out.println("mainloop");
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
@@ -407,6 +449,7 @@ public class Game_Main {
 
 
     }
+
     private void LOOP_processinput(){
         //process input from subsystems and states
 

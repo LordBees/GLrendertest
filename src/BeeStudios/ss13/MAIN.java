@@ -11,7 +11,7 @@ public class MAIN {
         //tx.loadtile("");
         //return 1010;
         Game_Main gamex = new Game_Main();
-        gamex.run(0);
+        gamex.run(3);
 
     }
 }

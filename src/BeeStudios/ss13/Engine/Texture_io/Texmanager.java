@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by Spartan 2 on 2017-07-31.
  */
+//unused - see SheetResourceManager
 public class Texmanager {
     public int[] texids_loaded = new int [255];
 

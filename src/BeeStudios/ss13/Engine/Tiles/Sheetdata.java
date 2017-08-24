@@ -3,6 +3,7 @@ package BeeStudios.ss13.Engine.Tiles;
 /**
  * Created by Spartan 2 on 2017-08-06.
  */
+//class for holding data on texture sheets
 public class Sheetdata {
     public int     TextureID       = 0;
     public String  texturename     = "";

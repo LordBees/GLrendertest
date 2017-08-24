@@ -16,5 +16,17 @@ public class misc_array {
         this.xdat = temp;
 
     }
+    public void remove(int position){
+
+    }
+    public void remove(String Xentry){
+
+    }
+    public String[] get(){
+        return this.xdat;
+    }
+    public int getlength(){
+        return xdat.length;
+    }
 
 }

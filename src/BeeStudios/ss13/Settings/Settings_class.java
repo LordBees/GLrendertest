@@ -24,6 +24,7 @@ public class Settings_class {
     public int TARG_FPS = 60;
 
     public boolean ORTHOMAIN = true;
+    public boolean RELOAD_DATA = true;
 
     ////
     public Settings_class(){//this is for initialising engine config variables
