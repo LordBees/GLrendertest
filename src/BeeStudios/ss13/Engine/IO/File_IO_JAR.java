@@ -11,7 +11,8 @@ import java.io.InputStreamReader;
 /**
  * Created by Spartan 2 on 2017-08-04.
  */
-public class JARstream {
+// was :File_IO_JAR
+public class File_IO_JAR {
     //
 
     //
@@ -41,6 +42,7 @@ public class JARstream {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         return reader;
     }
+
     public String[] getjardata_file_Stringarray(String fpathlocal){
         String[] returner;
         returner = new String[1];

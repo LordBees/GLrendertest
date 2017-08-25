@@ -9,6 +9,7 @@ import BeeStudios.ss13.Engine.Texture_io.Texmanager;
 import BeeStudios.ss13.Engine.Texture_io.TextureLoader;
 import BeeStudios.ss13.Engine.Tiles.Sheetdata;
 import BeeStudios.ss13.Engine.UI.UI_ButtonClickable;
+import BeeStudios.ss13.Engine.Logging.logger;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -28,6 +29,8 @@ import static org.lwjgl.system.MemoryUtil.*;
 public class Game_Main {
     //
     G_VARS sdfg = new G_VARS();
+    //logger
+        logger Xlog = new logger();
 
     //config
         Settings_class CFG = new Settings_class();
@@ -46,11 +49,17 @@ public class Game_Main {
 
     //
     public void run(int mode){
-        System.out.print("\n|Loading: opengl\n");
+        Xlog.log("Loading: ","Settings-Pre:");//System.out.print("\n|Loading: Settings-Pre:\n");
+
+        Xlog.logdone("Settings-Pre");//System.out.print("\n|Settings-Pre Done \n");
+
+        Xlog.log("Loading: ","OpenGL");//System.out.print("\n|Loading: opengl\n");
         setup_OPENGL_LWJGL();
-        System.out.print("|Loading: glmisc");
+        Xlog.log("Loading: ","GLmisc");//System.out.print("|Loading: glmisc");
         Setup_misc_opengl();
-        System.out.print("\n|GL Done \n");
+        Xlog.logdone("GL");//System.out.print("\n|GL Done \n");
+        //System.out.print(0/0);
+
         if (mode == 0){
             Game_Main_Loop();
         }
@@ -72,28 +81,28 @@ public class Game_Main {
     }
 
     public void cleanup(){
-        System.out.print("\ncleaning up TexMan");
+        Xlog.log("Cleanup","Texman");//System.out.print("\ncleaning up TexMan");
         this.TexMan.cleartexturebuffer();
-        System.out.print(".");
+        Xlog.log("Cleanup",".");//System.out.print(".");
         this.TexD.cleanup_manager();
-        System.out.print(". Done \n");
+        Xlog.logdone("Texman");//System.out.print(". Done \n");
 
         //gl cleanup
-        System.out.print("cleaning up Cleaning opengl");
+        Xlog.log("Cleanup","OpenGL");//System.out.print("cleaning up Cleaning opengl");
         // Free the window callbacks and destroy the window
         glfwFreeCallbacks(this.window);
         glfwDestroyWindow(this.window);
-        System.out.print(".");
+        Xlog.log("Cleanup",".");//System.out.print(".");
 
         // Terminate GLFW and free the error callback
         glfwTerminate();
         glfwSetErrorCallback(null).free();
-        System.out.print(". Done \n");
+        Xlog.logdone("OpenGL");//System.out.print(". Done \n");
 
     }
 
     public void setup_OPENGL_LWJGL(){
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
+        Xlog.logsub("Hello LWJGL " + Version.getVersion() + "!");//;System.out.println("Hello LWJGL " + Version.getVersion() + "!");
 
         // Setup an error callback. The default implementation
         // will print the error message in System.err.
@@ -175,8 +184,12 @@ public class Game_Main {
         //TexLdr.loadImage()
 
     }
+    public void Setup_SettingsPre(){
+
+    }
+
     public void Game_Main_Loop(){
-        System.out.println("mainloop");
+        Xlog.log("INFO","mainloop");//System.out.println("mainloop");
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
         if(CFG.ORTHOMAIN){// ortho space [(0,0 = top left]

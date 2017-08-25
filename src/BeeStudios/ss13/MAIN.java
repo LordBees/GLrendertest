@@ -1,5 +1,6 @@
 package BeeStudios.ss13;
 
+import BeeStudios.ss13.Engine.Menus.LauncherMenuDBG;
 import BeeStudios.ss13.GAME_MAIN.Game_Main;
 
 /**
@@ -10,8 +11,17 @@ public class MAIN {
         //TileManager tx = new TileManager();
         //tx.loadtile("");
         //return 1010;
-        Game_Main gamex = new Game_Main();
-        gamex.run(3);
+        boolean insetup = true;
+
+        if (insetup){
+            //SetupMenu launchmenu = new SetupMenu();
+            LauncherMenuDBG launcherMenuDBG = new LauncherMenuDBG();
+            launcherMenuDBG.showEventDemo();
+        }
+        else {
+            Game_Main gamex = new Game_Main();
+            gamex.run(3);
+        }
 
     }
 }
