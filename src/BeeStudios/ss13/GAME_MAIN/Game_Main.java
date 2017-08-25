@@ -130,9 +130,10 @@ public class Game_Main {
             throw new RuntimeException("Failed to create the GLFW window");
 
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(this.window, (window, key, scancode, action, mods) -> {
+        glfwSetKeyCallback(this.window, (window, key, scancode, action, mods) -> {//initial setup to ensure window can be quit later
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
+            /*
             if ( key == GLFW_KEY_Z && action == GLFW_RELEASE ){
                 //System.out.println('a');
                 if (sdfg.Player_Z == 0){
@@ -142,6 +143,7 @@ public class Game_Main {
                     sdfg.Player_Z = 0;
                 }
             }
+            */
 
         });
 

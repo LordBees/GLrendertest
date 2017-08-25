@@ -1,11 +1,14 @@
 package BeeStudios.ss13.Engine.Logging;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * Created by Spartan 2 on 2017-08-25.
  */
 public class loggerconfigger {
     private String [] loggingpriorities = {"info","warning","severe"};
-    private boolean log2file = false;
+    private boolean log2file = true;//false;
     private boolean logenabled = true;
     private String logfilepath = "";
     private String logfilename = "LOGGING.txt";
@@ -13,6 +16,15 @@ public class loggerconfigger {
 
     public loggerconfigger(){
         this.loggingpriorities_length = loggingpriorities.length;
+        if (this.logfilepath == ""){
+            Path currentRelativePath = Paths.get("");
+            String s = currentRelativePath.toAbsolutePath().toString();
+            this.logfilepath = s;
+            //System.out.println("Current relative path is: " + s);
+            //throw new RuntimeException(s+this.logfilename);//+"\\"+ added in filewriter
+
+
+        }
     }
 
 

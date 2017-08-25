@@ -1,5 +1,10 @@
 package BeeStudios.ss13.Engine.Logging;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * Created by Spartan 2 on 2017-08-24.
  */
@@ -82,6 +87,50 @@ public class logger {
         }
     }
     private void tofile(String st_line){
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+
+        try {
+
+            //String data = " This is new content";
+            String xpathname = this.log_settings.getLogfilepath()+"\\"+this.log_settings.getLogfilename();
+            //System.out.print(xpathname);
+            File file = new File(xpathname);
+
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // true = append file
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+
+            bw.write(st_line+"\n");
+
+            //System.out.println("Done");
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+        }
+
 
 
     }
