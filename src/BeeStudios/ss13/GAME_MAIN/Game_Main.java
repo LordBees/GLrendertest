@@ -73,6 +73,10 @@ public class Game_Main {
         else if(mode == 3){
             Test_3();
         }
+        else if(mode == 4){
+            System.out.print("Testing New managers");
+            Test_4();
+        }
         else{
             System.out.println("no mode specified, ending session");
         }
@@ -184,6 +188,7 @@ public class Game_Main {
         //glfwSetWindowIcon(this.window,1,xicon);
         //int tx = TexLdr.BindResourceTex("ASCII_titlepic.PNG");
         //TexLdr.loadImage()
+        this.Xlog.config_fromfile("");
 
     }
     public void Setup_SettingsPre(){
@@ -400,6 +405,121 @@ public class Game_Main {
                 st2 = stb;
             }
            // Button butontest = new Button(-1,0,10,1,"test£",this.window);
+            //butontest.setColor(0,255,255);
+            //butontest.draw();
+
+            //butontest.setVisible(true);
+            //
+            //for     (int x=1;x<=(CFG.Disp_xres/32);x++){
+            //    for (int y=1;y<=(CFG.Disp_yres/32);y++){
+            //        TexLdr.Drawdatafromtilesheet_quick(st2,x,y,x*st2.tilewidth,y*st2.textureheight);
+
+            //   }
+            //}
+            //working out disp res
+
+            for     (int x=0;x<st2.numtiles_x;x++){
+                for (int y=0;y<st2.numtiles_y;y++){
+                    TexLdr.Drawdatafromtilesheet_quick(st2,x+1,y+1,(x*32)+64,(y*32)+64);
+                }
+            }
+            //TexLdr.Drawdatafromtilesheet_quick(st2,1,1,0,0);
+            //TexLdr.dr(st2,0,64,tx2);
+
+            System.out.println(st2.texturewidth);
+            /*
+            float[][] xtoi = butontest.makesquarecoords(tax);
+            System.out.print("\n");
+            System.out.println("x : " + xtoi[0][0] + ", y = " + xtoi[1][0]);
+            System.out.println("x : " + xtoi[0][1] + ", y = " + xtoi[1][1]);
+            System.out.println("x : " + xtoi[0][2] + ", y = " + xtoi[1][2]);
+            System.out.println("x : " + xtoi[0][3] + ", y = " + xtoi[1][3]);
+
+            System.out.print("\n");
+            */
+
+            /*
+            System.out.print("\n:");
+            System.out.print(xtoi[0][0]);
+            System.out.print("|");
+            System.out.print(xtoi[1]);
+            System.out.print("|");
+            System.out.print(xtoi[2]);
+            System.out.print("|");
+            System.out.print(xtoi[3]);
+            System.out.print("|");
+            */
+            //butontest.XRender();
+
+
+            LOOP_processinput();
+
+            LOOP_updatestate();
+
+            LOOP_render();
+
+
+            //was glrender stuff here moved to glfff txt
+            glfwSwapBuffers(this.window); // swap the color buffers
+
+            // Poll for window events. The key callback above will only be
+            // invoked during this call.
+            glfwPollEvents();
+        }
+
+
+    }
+    public void Test_4(){
+        System.out.println("mainloop");
+        GL.createCapabilities();
+        glEnable(GL_TEXTURE_2D);
+        if(CFG.ORTHOMAIN){// ortho space [(0,0 = top left]
+            glOrtho( 0.f, CFG.Disp_xres, CFG.Disp_yres, 0.f, 0.f, 1.f );
+        }
+
+        // Set the clear color
+        //glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(CFG.Disp_clearcolour[0], CFG.Disp_clearcolour[1], CFG.Disp_clearcolour[2], CFG.Disp_clearcolour[3]);
+
+        // load assets
+        DoubleBuffer b1 = BufferUtils.createDoubleBuffer(1);
+        DoubleBuffer b2 = BufferUtils.createDoubleBuffer(1);
+        //Button butontest = new Button(-1,0,10,1,"test£",this.window);
+        int[] taz = {0,255,0};
+        float[][] tax = new float[2][2];
+        tax[0][0] = 0;
+        tax[0][1] = 0;
+        tax[1][0] = 0.5f;
+        tax[1][1] = 0.5f;
+        UI_ButtonClickable butontest = new UI_ButtonClickable(taz,new String[3],tax,true,true);
+
+
+        int[] tx2_dim = {1184,1184};//{64,64};//{1183,1183};//{704,704};
+        int[] tx3_dim = {704,704};
+        float[] tx2_tpos = {1,1};
+        float[] tx2_tscale = {8,8};
+        float[] tx2_xyz = {0.025f,0.025f,0};
+        int tx2 = TexLdr.BindResourceTex("/turf/floors.dmi");//"turf\\floors.dmi"
+        int tx3 = TexLdr.BindResourceTex("/turf/construction_floors.dmi");//"turf\\floors.dmi"
+        //int tx2 = TexLdr.BindResourceTex("/Test/tiletes.png");//"turf\\floors.dmi"
+        Sheetdata st2;
+        Sheetdata sta = new Sheetdata(tx2,"",tx2_dim[0],tx2_dim[1],32,32);
+        Sheetdata stb = new Sheetdata(tx3,"",tx3_dim[0],tx3_dim[1],32,32);
+
+        //game loop
+        while (!glfwWindowShouldClose(this.window) ) {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            ///
+            glfwGetCursorPos(window, b1, b2);
+            System.out.println("x : " + b1.get(0) + ", y = " + b2.get(0));
+            if (sdfg.Player_Z ==0){
+                st2 = sta;
+
+            }
+            else{
+                st2 = stb;
+            }
+            // Button butontest = new Button(-1,0,10,1,"test£",this.window);
             //butontest.setColor(0,255,255);
             //butontest.draw();
 

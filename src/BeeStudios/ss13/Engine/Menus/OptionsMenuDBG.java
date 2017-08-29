@@ -2,23 +2,27 @@ package BeeStudios.ss13.Engine.Menus;
 
 import BeeStudios.ss13.GAME_MAIN.Game_Main;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  * Created by Spartan 2 on 2017-08-25.
  */
-public class LauncherMenuDBG {
+public class OptionsMenuDBG {
     private JFrame mainFrame;
     private JLabel headerLabel;
     private JLabel statusLabel;
     private JPanel controlPanel;
 
-    public LauncherMenuDBG(){
+    public OptionsMenuDBG(){
         prepareGUI();
     }
     public static void main(String[] args){
-        LauncherMenuDBG launcherMenuDBG = new LauncherMenuDBG();
+        OptionsMenuDBG launcherMenuDBG = new OptionsMenuDBG();
         launcherMenuDBG.showEventDemo();
     }
     private void prepareGUI(){
@@ -76,12 +80,9 @@ public class LauncherMenuDBG {
                 //mainFrame.setVisible(false);
             } else if( command.equals( "OptionsMenu" ) )  {
                 statusLabel.setText("Submit Button clicked.");
-                OptionsMenuDBG options = new OptionsMenuDBG();
-                options.showEventDemo();
             } else if( command.equals( "Cancel" )) {
                 statusLabel.setText("Cancel Button clicked.");
                 mainFrame.dispose();
-
             }
         }
     }

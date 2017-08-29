@@ -11,7 +11,7 @@ public class MAIN {
         //TileManager tx = new TileManager();
         //tx.loadtile("");
         //return 1010;
-        boolean insetup = false;//true;
+        boolean insetup = true;//false;//true;
 
         if (insetup){
             //SetupMenu launchmenu = new SetupMenu();

@@ -4,6 +4,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 /**
  * Created by Spartan 2 on 2017-08-24.
@@ -35,6 +43,81 @@ public class logger {
     }
 
     public void config(){
+
+
+    }
+    public void config_fromfile(String loggerxml){//finish this
+        if (loggerxml == ""){
+            Path currentRelativePath = Paths.get("");
+            String s = currentRelativePath.toAbsolutePath().toString();
+            loggerxml = s+"\\"+"Res\\Defaults\\"+"LoggerDefault.xml";//change to jar location
+        }
+
+        try {
+
+            File fXmlFile = new File(loggerxml);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            //optional, but recommended
+            //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+            doc.getDocumentElement().normalize();
+
+            //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+
+            NodeList nList = doc.getElementsByTagName("LoggerSettings");
+
+            //System.out.println("----------------------------");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                //System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    //System.out.println("Staff id : " + eElement.getAttribute("id"));
+                    //System.out.println("First Name : " + eElement.getElementsByTagName("Writeable").item(0).getTextContent());
+                    //System.out.println("Last Name : " + eElement.getElementsByTagName("Enabled").item(0).getTextContent());
+                    //System.out.println("Nick Name : " + eElement.getElementsByTagName("Filepath").item(0).getTextContent());
+                    //System.out.println("Salary : " + eElement.getElementsByTagName("LogFileName").item(0).getTextContent());
+
+
+                    //my code
+                    loggerconfigger templogger = new loggerconfigger();
+
+
+                    if ( eElement.getElementsByTagName("Enabled").item(0).getTextContent() == "True"){
+                        templogger.setLogenabled(true);
+                    }
+                    else{
+                        templogger.setLogenabled(false);
+                    }
+
+                    if ( eElement.getElementsByTagName("Writeable").item(0).getTextContent() == "True"){
+                        templogger.setLog2file(true);
+                    }
+                    else{
+                        templogger.setLog2file(false);
+                    }
+
+                    templogger.setLogfilepath(eElement.getElementsByTagName("Filepath").item(0).getTextContent());
+                    templogger.checkpath();
+                    templogger.setLogfilename(eElement.getElementsByTagName("LogFileName").item(0).getTextContent());
+                    //templogger.setLogenabled();
+                    //templogger.setLog2file();
+                    //templogger.setLogfilepath();
+                    //templogger.setLogfilename();
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

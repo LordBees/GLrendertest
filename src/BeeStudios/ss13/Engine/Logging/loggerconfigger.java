@@ -16,6 +16,10 @@ public class loggerconfigger {
 
     public loggerconfigger(){
         this.loggingpriorities_length = loggingpriorities.length;
+        this.checkpath();
+    }
+
+    public void checkpath(){//checks path for logger,if not supplied then will set to default of CWD for jar
         if (this.logfilepath == ""){
             Path currentRelativePath = Paths.get("");
             String s = currentRelativePath.toAbsolutePath().toString();
@@ -26,8 +30,6 @@ public class loggerconfigger {
 
         }
     }
-
-
     public int getLoggingpriorities_length(){
         return loggingpriorities_length;
     }
