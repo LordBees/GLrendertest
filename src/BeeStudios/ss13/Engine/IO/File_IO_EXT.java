@@ -55,7 +55,9 @@ public class File_IO_EXT {
         return null;
     }
 
-    public String getfiledataraw(String loc){
+    //public String getfiledataraw(String loc){
+    //public String loadfile_buffered(String loc){
+    public String loadfile_string(String loc){
         try(BufferedReader br = new BufferedReader(new FileReader(loc))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -71,6 +73,9 @@ public class File_IO_EXT {
         catch (IOException e){
             System.out.print("error file not found!");
         }
+        return "";
+    }
+    public String loadfile_buffered(String loc){
         return "";
     }
 }

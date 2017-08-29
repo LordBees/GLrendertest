@@ -70,7 +70,7 @@ public class TextureManager {
             //load the image form source
             BufferedImage ximage;
             if (temptex.isInjar()){
-                ximage = Jload.getjardata_image(temptex.getTexturePath());
+                ximage = Jload.loadimage(temptex.getTexturePath());
             }
             else {
                 ximage = Eload.loadImage(temptex.getTexturePath());

@@ -18,7 +18,8 @@ public class File_IO_JAR {
     //
 
     //
-    public BufferedImage getjardata_image(String fpathlocal){
+    //public BufferedImage loadimage(String fpathlocal){
+    public BufferedImage loadimage(String fpathlocal){
         // BufferedImage image =ImageIO.read(getClass().getResourceAsStream(loc));
         //BufferedImage image = ImageIO.read(getClass().getResourceAsStream(fpathlocal));
         //return image;
@@ -36,7 +37,8 @@ public class File_IO_JAR {
         return null;
     }
 
-    public BufferedReader getjardata_file(String fpathlocal){
+    //public BufferedReader getjardata_file(String fpathlocal){
+    public BufferedReader loadfile_buffered(String fpathlocal){
         System.out.println("gJD_f");
         InputStream in = getClass().getResourceAsStream(fpathlocal);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
